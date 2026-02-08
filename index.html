@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kundi Babe 💘</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .card {
+    background: white;
+    width: 85%;
+    max-width: 360px;
+    padding: 30px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    z-index: 2;
+  }
+
+  h1 {
+    color: #ff4d6d;
+    font-size: 26px;
+  }
+
+  p {
+    font-size: 18px;
+    margin: 12px 0;
+  }
+
+  .buttons {
+    position: relative;
+    height: 120px;
+    margin-top: 20px;
+  }
+
+  button {
+    padding: 14px 28px;
+    font-size: 16px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    position: absolute;
+    transition: all 0.4s ease;
+  }
+
+  #yes {
+    background: #ff4d6d;
+    color: white;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+
+  #hmm {
+    background: #ddd;
+    left: 50%;
+    top: 60px;
+    transform: translateX(-50%);
+  }
+
+  /* YES slow growth */
+  .grow {
+    position: fixed !important;
+    inset: 0;
+    border-radius: 0 !important;
+    font-size: 48px !important;
+    transition: all 3.5s ease !important;
+    z-index: 10;
+  }
+
+  /* Floating hearts */
+  .heart {
+    position: absolute;
+    font-size: 18px;
+    animation: floatUp 8s linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes floatUp {
+    from {
+      transform: translateY(100vh) scale(0.5);
+      opacity: 0;
+    }
+    10% { opacity: 0.8; }
+    to {
+      transform: translateY(-10vh) scale(1);
+      opacity: 0;
+    }
+  }
+
+  /* Fade in */
+  .fade {
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  /* Teddy hug */
+  .teddy-container {
+    position: relative;
+    height: 180px;
+    margin-top: 30px;
+  }
+
+  .teddy {
+    font-size: 64px;
+    position: absolute;
+    top: 50px;
+    transition: transform 1.2s ease;
+  }
+
+  .teddy.left {
+    left: 0;
+    transform: translateX(-40px);
+  }
+
+  .teddy.right {
+    right: 0;
+    transform: translateX(40px);
+  }
+
+  .teddy.hug.left {
+    transform: translateX(80px) rotate(-5deg) scale(1.1);
+  }
+
+  .teddy.hug.right {
+    transform: translateX(-80px) rotate(5deg) scale(1.1);
+  }
+
+  .hug-heart {
+    position: absolute;
+    left: 50%;
+    top: 70px;
+    transform: translateX(-50%) scale(0);
+    font-size: 32px;
+    animation: pop 1.2s ease forwards;
+    animation-delay: 1s;
+  }
+
+  @keyframes pop {
+    0% { transform: translateX(-50%) scale(0); opacity: 0; }
+    50% { transform: translateX(-50%) scale(1.4); opacity: 1; }
+    100% { transform: translateX(-50%) scale(1); opacity: 1; }
+  }
+
+  .hug-text {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #ff4d6d;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+    animation-delay: 2.2s;
+  }
+</style>
+</head>
+
+<body>
+
+<audio id="song">
+  <source src="lover.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card" id="card">
+  <h1>Hey kundi babe 💕</h1>
+  <p>Will you be my Valentine?</p>
+
+  <div class="buttons">
+    <button id="yes">yes 😎</button>
+    <button id="hmm">hmm 🤔</button>
+  </div>
+</div>
+
+<script>
+  const yesBtn = document.getElementById("yes");
+  const hmmBtn = document.getElementById("hmm");
+  const card = document.getElementById("card");
+  const song = document.getElementById("song");
+
+  let dodgeCount = 0;
+  let dodgeActive = true;
+
+  const dodge = () => {
+    if (!dodgeActive || dodgeCount >= 2) return;
+
+    dodgeCount++;
+    hmmBtn.style.left = Math.random() * (window.innerWidth - 120) + "px";
+    hmmBtn.style.top = Math.random() * (window.innerHeight - 60) + "px";
+  };
+
+  hmmBtn.addEventListener("mouseover", dodge);
+  hmmBtn.addEventListener("touchstart", dodge);
+
+  // Stop dodging after 5 seconds, then grow YES slowly
+  setTimeout(() => {
+    dodgeActive = false;
+    hmmBtn.style.display = "none";
+    yesBtn.classList.add("grow");
+  }, 5000);
+
+  // Floating hearts (emoji-safe)
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = "\u{1F496}";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (14 + Math.random() * 20) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 8000);
+  }, 600);
+
+  // Final YES
+  yesBtn.addEventListener("click", () => {
+    song.play();
+
+    card.innerHTML = `
+      <h1 class="fade">It’s you 💘</h1>
+
+      <div class="teddy-container">
+        <div class="teddy left" id="teddyLeft">\u{1F9F8}</div>
+        <div class="teddy right" id="teddyRight">\u{1F9F8}</div>
+        <div class="hug-heart">\u{1F496}</div>
+      </div>
+
+      <div class="hug-text">
+        now you will always be my valentine 💋
+      </div>
+    `;
+
+    setTimeout(() => {
+      document.getElementById("teddyLeft").classList.add("hug");
+      document.getElementById("teddyRight").classList.add("hug");
+    }, 600);
+  });
+</script>
+
+</body>
+</html>
