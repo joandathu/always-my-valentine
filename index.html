@@ -3,248 +3,224 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kundi Babe 💘</title>
-
+<title>Valentine Proposal</title>
 <style>
-  body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-  }
+body{
+margin:0;
+padding:0;
+font-family:Arial, sans-serif;
+text-align:center;
+background:linear-gradient(to bottom right,#ff9a9e,#fad0c4);
+overflow:hidden;
+position:relative;
+}
 
-  .card {
-    background: white;
-    width: 85%;
-    max-width: 360px;
-    padding: 30px;
-    border-radius: 24px;
-    text-align: center;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-    z-index: 2;
-  }
+.fade{animation:fadeScreen 1.5s forwards}
+@keyframes fadeScreen{from{opacity:0}to{opacity:1}}
 
-  h1 {
-    color: #ff4d6d;
-    font-size: 26px;
-  }
+.sparkle{
+position:absolute;width:6px;height:6px;background:white;border-radius:50%;
+animation:sparkleAnim 3s infinite ease-in-out;z-index:0;
+}
+@keyframes sparkleAnim{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:1;transform:scale(1.5)}}
 
-  p {
-    font-size: 18px;
-    margin: 12px 0;
-  }
+h1{margin-top:80px;font-size:2.5rem;color:#fff;z-index:2;position:relative}
+.buttons{margin-top:40px;position:relative;z-index:3}
+button{padding:15px 30px;font-size:1.2rem;border:none;border-radius:30px;cursor:pointer;transition:.3s;margin:10px}
+#yesBtn{background:#ff4d6d;color:white;position:relative;z-index:3}
+#hmmBtn{background:white;position:relative;z-index:3}
 
-  .buttons {
-    position: relative;
-    height: 120px;
-    margin-top: 20px;
-  }
+#bunny{width:120px;margin:40px auto;position:relative;z-index:1}
+.ear{width:30px;height:80px;background:white;border-radius:50px;position:absolute;top:-60px}
+.ear.left{left:15px}.ear.right{right:15px}
+.face{width:120px;height:100px;background:white;border-radius:50%;position:relative}
+.eye{width:15px;height:15px;background:black;border-radius:50%;position:absolute;top:35px}
+.eye.left{left:35px}.eye.right{right:35px}
+.mouth{width:30px;height:15px;border-bottom:3px solid black;border-radius:50%;position:absolute;bottom:25px;left:45px;transition:.3s}
+.jump{animation:jumpJoy .6s ease infinite}
+@keyframes jumpJoy{0%{transform:translateY(0)}50%{transform:translateY(-25px)}100%{transform:translateY(0)}}
 
-  button {
-    padding: 14px 28px;
-    font-size: 16px;
-    border: none;
-    border-radius: 999px;
-    cursor: pointer;
-    position: absolute;
-    transition: all 0.4s ease;
-  }
+.page{
+display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;
+background:linear-gradient(to bottom right,#ff8fab,#ff4d6d);
+color:white;justify-content:center;align-items:center;flex-direction:column;
+z-index:50;opacity:0;
+}
 
-  #yes {
-    background: #ff4d6d;
-    color: white;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
-  }
+.memory-img{
+width:260px;
+border-radius:20px;
+box-shadow:0 0 25px rgba(255,255,255,.8);
+display:none;
+}
 
-  #hmm {
-    background: #ddd;
-    left: 50%;
-    top: 60px;
-    transform: translateX(-50%);
-  }
+#finalPage{
+font-size:3rem;
+font-weight:bold;
+animation:pulseGlow 2s infinite;
+overflow:hidden;
+}
+@keyframes pulseGlow{
+0%{text-shadow:0 0 10px white}
+50%{text-shadow:0 0 35px white}
+100%{text-shadow:0 0 10px white}
+}
 
-  /* YES slow growth */
-  .grow {
-    position: fixed !important;
-    inset: 0;
-    border-radius: 0 !important;
-    font-size: 48px !important;
-    transition: all 3.5s ease !important;
-    z-index: 10;
-  }
+.heart{
+position:absolute;
+color:white;
+font-size:22px;
+animation:floatUp linear infinite;
+opacity:.85;
+}
+@keyframes floatUp{
+0%{transform:translateY(100vh) scale(.5);opacity:0}
+30%{opacity:1}
+100%{transform:translateY(-10vh) scale(1.3);opacity:0}
+}
 
-  /* Floating hearts */
-  .heart {
-    position: absolute;
-    font-size: 18px;
-    animation: floatUp 8s linear infinite;
-    opacity: 0.8;
-  }
+.confetti{position:fixed;width:8px;height:8px;top:-10px;animation:fall linear forwards;z-index:100}
+@keyframes fall{to{transform:translateY(100vh) rotate(720deg);opacity:0}}
 
-  @keyframes floatUp {
-    from {
-      transform: translateY(100vh) scale(0.5);
-      opacity: 0;
-    }
-    10% { opacity: 0.8; }
-    to {
-      transform: translateY(-10vh) scale(1);
-      opacity: 0;
-    }
-  }
-
-  /* Fade in */
-  .fade {
-    opacity: 0;
-    animation: fadeIn 2s forwards;
-  }
-
-  @keyframes fadeIn {
-    to { opacity: 1; }
-  }
-
-  /* Teddy hug */
-  .teddy-container {
-    position: relative;
-    height: 180px;
-    margin-top: 30px;
-  }
-
-  .teddy {
-    font-size: 64px;
-    position: absolute;
-    top: 50px;
-    transition: transform 1.2s ease;
-  }
-
-  .teddy.left {
-    left: 0;
-    transform: translateX(-40px);
-  }
-
-  .teddy.right {
-    right: 0;
-    transform: translateX(40px);
-  }
-
-  .teddy.hug.left {
-    transform: translateX(80px) rotate(-5deg) scale(1.1);
-  }
-
-  .teddy.hug.right {
-    transform: translateX(-80px) rotate(5deg) scale(1.1);
-  }
-
-  .hug-heart {
-    position: absolute;
-    left: 50%;
-    top: 70px;
-    transform: translateX(-50%) scale(0);
-    font-size: 32px;
-    animation: pop 1.2s ease forwards;
-    animation-delay: 1s;
-  }
-
-  @keyframes pop {
-    0% { transform: translateX(-50%) scale(0); opacity: 0; }
-    50% { transform: translateX(-50%) scale(1.4); opacity: 1; }
-    100% { transform: translateX(-50%) scale(1); opacity: 1; }
-  }
-
-  .hug-text {
-    margin-top: 20px;
-    font-size: 20px;
-    color: #ff4d6d;
-    opacity: 0;
-    animation: fadeIn 2s forwards;
-    animation-delay: 2.2s;
-  }
+#refreshMessage{position:fixed;bottom:20px;width:100%;text-align:center;color:white;font-size:1.2rem;display:none;z-index:200}
 </style>
 </head>
-
 <body>
 
-<audio id="song">
-  <source src="lover.mp3" type="audio/mpeg">
-</audio>
-
-<div class="card" id="card">
-  <h1>Hey kundi babe 💕</h1>
-  <p>Will you be my Valentine?</p>
-
-  <div class="buttons">
-    <button id="yes">yes 😎</button>
-    <button id="hmm">hmm 🤔</button>
-  </div>
+<h1>Hey kundi babe would you be my valentine? 💕</h1>
+<div class="buttons">
+<button id="yesBtn" type="button">Yes ☺️</button>
+<button id="hmmBtn" type="button">Hmm 🤔</button>
 </div>
 
+<div id="bunny">
+<div class="ear left"></div>
+<div class="ear right"></div>
+<div class="face">
+<div class="eye left"></div>
+<div class="eye right"></div>
+<div class="mouth" id="mouth"></div>
+</div>
+</div>
+
+<div id="memoriesPage" class="page">
+<img src="photo1.jpeg" class="memory-img">
+<img src="photo2.jpeg" class="memory-img">
+<img src="photo3.jpeg" class="memory-img">
+</div>
+
+<div id="finalPage" class="page">
+Forever & Always ❤️
+</div>
+
+<div id="refreshMessage">You refreshed? You thought you could escape? Still mine. Always. ❤️</div>
+
+<audio id="loverSong" src="lover.mp3" loop></audio>
+
 <script>
-  const yesBtn = document.getElementById("yes");
-  const hmmBtn = document.getElementById("hmm");
-  const card = document.getElementById("card");
-  const song = document.getElementById("song");
+let hmmCount=0;
+let scale=1;
+const yesBtn=document.getElementById('yesBtn');
+const hmmBtn=document.getElementById('hmmBtn');
+const mouth=document.getElementById('mouth');
+const bunny=document.getElementById('bunny');
+const memories=document.getElementById('memoriesPage');
+const finalPage=document.getElementById('finalPage');
+const song=document.getElementById('loverSong');
 
-  let dodgeCount = 0;
-  let dodgeActive = true;
+if(sessionStorage.getItem('visited')){
+document.getElementById('refreshMessage').style.display='block';
+}
+sessionStorage.setItem('visited',true);
 
-  const dodge = () => {
-    if (!dodgeActive || dodgeCount >= 2) return;
+for(let i=0;i<40;i++){
+let s=document.createElement('div');
+s.className='sparkle';
+s.style.top=Math.random()*window.innerHeight+'px';
+s.style.left=Math.random()*window.innerWidth+'px';
+s.style.animationDelay=Math.random()*3+'s';
+document.body.appendChild(s);
+}
 
-    dodgeCount++;
-    hmmBtn.style.left = Math.random() * (window.innerWidth - 120) + "px";
-    hmmBtn.style.top = Math.random() * (window.innerHeight - 60) + "px";
-  };
+hmmBtn.addEventListener('click',()=>{
+hmmCount++;
+if(hmmCount<=3){
+scale+=0.3;
+yesBtn.style.transform=`scale(${scale})`;
+mouth.style.borderBottom='none';
+mouth.style.borderTop=`3px solid ${hmmCount===1?'#666':hmmCount===2?'#999':'red'}`;
+}
+if(hmmCount===4){
+hmmBtn.style.position='absolute';
+hmmBtn.addEventListener('mouseover',()=>{
+hmmBtn.style.left=Math.random()*(window.innerWidth-100)+'px';
+hmmBtn.style.top=Math.random()*(window.innerHeight-50)+'px';
+});
+let grow=setInterval(()=>{
+scale+=0.6;
+yesBtn.style.transform=`scale(${scale})`;
+if(scale>20){clearInterval(grow)}
+},200);
+}
+});
 
-  hmmBtn.addEventListener("mouseover", dodge);
-  hmmBtn.addEventListener("touchstart", dodge);
+yesBtn.addEventListener('click',()=>{
+document.querySelector('.buttons').style.display='none';
+bunny.classList.add('jump');
+mouth.style.borderTop='none';
+mouth.style.borderBottom='3px solid green';
+song.play();
 
-  // Stop dodging after 5 seconds, then grow YES slowly
-  setTimeout(() => {
-    dodgeActive = false;
-    hmmBtn.style.display = "none";
-    yesBtn.classList.add("grow");
-  }, 5000);
+for(let i=0;i<100;i++){
+let c=document.createElement('div');
+c.className='confetti';
+c.style.left=Math.random()*100+'vw';
+c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+c.style.animationDuration=2+Math.random()*2+'s';
+document.body.appendChild(c);
+}
 
-  // Floating hearts (emoji-safe)
-  setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.textContent = "\u{1F496}";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (14 + Math.random() * 20) + "px";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 8000);
-  }, 600);
+setTimeout(()=>{
+startMemories();
+},2000);
+});
 
-  // Final YES
-  yesBtn.addEventListener("click", () => {
-    song.play();
+function startMemories(){
+memories.style.display='flex';
+memories.classList.add('fade');
+let imgs=document.querySelectorAll('.memory-img');
+let index=0;
 
-    card.innerHTML = `
-      <h1 class="fade">It’s you 💘</h1>
+function showNext(){
+if(index>0) imgs[index-1].style.display='none';
+if(index<imgs.length){
+imgs[index].style.display='block';
+index++;
+setTimeout(showNext,3000);
+}else{
+memories.style.display='none';
+showFinal();
+}
+}
+showNext();
+}
 
-      <div class="teddy-container">
-        <div class="teddy left" id="teddyLeft">\u{1F9F8}</div>
-        <div class="teddy right" id="teddyRight">\u{1F9F8}</div>
-        <div class="hug-heart">\u{1F496}</div>
-      </div>
+function showFinal(){
+finalPage.style.display='flex';
+finalPage.classList.add('fade');
+startHearts();
+}
 
-      <div class="hug-text">
-        now you will always be my valentine 💋
-      </div>
-    `;
-
-    setTimeout(() => {
-      document.getElementById("teddyLeft").classList.add("hug");
-      document.getElementById("teddyRight").classList.add("hug");
-    }, 600);
-  });
+function startHearts(){
+for(let i=0;i<25;i++){
+let heart=document.createElement('div');
+heart.className='heart';
+heart.innerHTML='❤️';
+heart.style.left=Math.random()*100+'vw';
+heart.style.animationDuration=4+Math.random()*4+'s';
+finalPage.appendChild(heart);
+}
+}
 </script>
 
 </body>
