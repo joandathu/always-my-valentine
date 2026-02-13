@@ -5,223 +5,448 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Valentine Proposal</title>
 <style>
-body{
-margin:0;
-padding:0;
-font-family:Arial, sans-serif;
-text-align:center;
-background:linear-gradient(to bottom right,#ff9a9e,#fad0c4);
-overflow:hidden;
-position:relative;
+/* --- BODY --- */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
+  overflow: hidden;
+  position: relative;
 }
 
-.fade{animation:fadeScreen 1.5s forwards}
-@keyframes fadeScreen{from{opacity:0}to{opacity:1}}
-
-.sparkle{
-position:absolute;width:6px;height:6px;background:white;border-radius:50%;
-animation:sparkleAnim 3s infinite ease-in-out;z-index:0;
-}
-@keyframes sparkleAnim{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:1;transform:scale(1.5)}}
-
-h1{margin-top:80px;font-size:2.5rem;color:#fff;z-index:2;position:relative}
-.buttons{margin-top:40px;position:relative;z-index:3}
-button{padding:15px 30px;font-size:1.2rem;border:none;border-radius:30px;cursor:pointer;transition:.3s;margin:10px}
-#yesBtn{background:#ff4d6d;color:white;position:relative;z-index:3}
-#hmmBtn{background:white;position:relative;z-index:3}
-
-#bunny{width:120px;margin:40px auto;position:relative;z-index:1}
-.ear{width:30px;height:80px;background:white;border-radius:50px;position:absolute;top:-60px}
-.ear.left{left:15px}.ear.right{right:15px}
-.face{width:120px;height:100px;background:white;border-radius:50%;position:relative}
-.eye{width:15px;height:15px;background:black;border-radius:50%;position:absolute;top:35px}
-.eye.left{left:35px}.eye.right{right:35px}
-.mouth{width:30px;height:15px;border-bottom:3px solid black;border-radius:50%;position:absolute;bottom:25px;left:45px;transition:.3s}
-.jump{animation:jumpJoy .6s ease infinite}
-@keyframes jumpJoy{0%{transform:translateY(0)}50%{transform:translateY(-25px)}100%{transform:translateY(0)}}
-
-.page{
-display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;
-background:linear-gradient(to bottom right,#ff8fab,#ff4d6d);
-color:white;justify-content:center;align-items:center;flex-direction:column;
-z-index:50;opacity:0;
+/* --- MAIN CONTENT WRAPPER --- */
+#mainContent {
+  transition: transform 0.3s ease;
 }
 
-.memory-img{
-width:260px;
-border-radius:20px;
-box-shadow:0 0 25px rgba(255,255,255,.8);
-display:none;
+/* --- FADE EFFECT --- */
+.fade {
+  animation: fadeScreen 1.5s forwards;
+}
+@keyframes fadeScreen {
+  from { opacity: 0 }
+  to   { opacity: 1 }
 }
 
-#finalPage{
-font-size:3rem;
-font-weight:bold;
-animation:pulseGlow 2s infinite;
-overflow:hidden;
+/* --- SPARKLES --- */
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  animation: sparkleAnim 3s infinite ease-in-out;
+  z-index: 0;
 }
-@keyframes pulseGlow{
-0%{text-shadow:0 0 10px white}
-50%{text-shadow:0 0 35px white}
-100%{text-shadow:0 0 10px white}
-}
-
-.heart{
-position:absolute;
-color:white;
-font-size:22px;
-animation:floatUp linear infinite;
-opacity:.85;
-}
-@keyframes floatUp{
-0%{transform:translateY(100vh) scale(.5);opacity:0}
-30%{opacity:1}
-100%{transform:translateY(-10vh) scale(1.3);opacity:0}
+@keyframes sparkleAnim {
+  0%, 100% { opacity: .2; transform: scale(.8) }
+  50%      { opacity: 1;  transform: scale(1.5) }
 }
 
-.confetti{position:fixed;width:8px;height:8px;top:-10px;animation:fall linear forwards;z-index:100}
-@keyframes fall{to{transform:translateY(100vh) rotate(720deg);opacity:0}}
+/* --- FLOATING HEARTS --- */
+.heart {
+  position: absolute;
+  font-size: 20px;
+  animation: floatUp 6s linear forwards;
+  opacity: .7;
+  z-index: 0;
+}
+@keyframes floatUp {
+  from { transform: translateY(100vh) scale(.8); opacity: .8 }
+  to   { transform: translateY(-10vh) scale(1.5); opacity: 0 }
+}
 
-#refreshMessage{position:fixed;bottom:20px;width:100%;text-align:center;color:white;font-size:1.2rem;display:none;z-index:200}
+/* --- HEADING --- */
+h1 {
+  margin-top: 80px;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  color: #fff;
+  z-index: 2;
+  position: relative;
+  padding: 0 20px;
+}
+
+/* --- BUTTONS --- */
+.buttons {
+  margin-top: 40px;
+  position: relative;
+  z-index: 3;
+}
+button {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: .3s ease;
+  margin: 10px;
+}
+#yesBtn { background: #ff4d6d; color: white; position: relative; z-index: 3 }
+#hmmBtn { background: white; position: relative; z-index: 3 }
+
+/* --- BUNNY --- */
+#bunny {
+  width: 140px;
+  margin: 100px auto 40px;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,.2));
+}
+.ear {
+  width: 35px;
+  height: 90px;
+  background: white;
+  border-radius: 50px;
+  position: absolute;
+  top: -70px;
+}
+.inner-ear {
+  width: 20px;
+  height: 60px;
+  background: #ffb6c1;
+  border-radius: 50px;
+  position: absolute;
+  top: 15px;
+  left: 7px;
+}
+.ear.left  { left: 15px }
+.ear.right { right: 15px }
+.face {
+  width: 140px;
+  height: 120px;
+  background: white;
+  border-radius: 50%;
+  position: relative;
+}
+.eye {
+  width: 16px;
+  height: 16px;
+  background: black;
+  border-radius: 50%;
+  position: absolute;
+  top: 40px;
+  animation: blink 3s infinite;
+}
+@keyframes blink {
+  0%, 95%, 100% { transform: scaleY(1) }
+  97%           { transform: scaleY(0.1) }
+}
+.eye.left  { left: 40px }
+.eye.right { right: 40px }
+.blush {
+  width: 18px;
+  height: 10px;
+  background: #ff9aa2;
+  border-radius: 50%;
+  position: absolute;
+  top: 60px;
+  opacity: .7;
+}
+.blush.left  { left: 20px }
+.blush.right { right: 20px }
+.nose {
+  width: 12px;
+  height: 10px;
+  background: #ff8fab;
+  border-radius: 50%;
+  position: absolute;
+  top: 58px;
+  left: 64px;
+}
+.mouth {
+  width: 30px;
+  height: 15px;
+  border-bottom: 3px solid black;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 25px;
+  left: 55px;
+  transition: .3s;
+}
+.jump { animation: jumpJoy .6s ease infinite }
+@keyframes jumpJoy {
+  0%   { transform: translateY(0) }
+  50%  { transform: translateY(-25px) }
+  100% { transform: translateY(0) }
+}
+
+/* --- PAGES --- */
+.page {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to bottom right, #ff8fab, #ff4d6d);
+  color: white;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 5;
+  opacity: 1;
+}
+
+/* --- MEMORIES PAGE --- */
+#memoriesPage h2 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: 20px;
+}
+#memoriesPage img {
+  width: min(250px, 80vw);
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(255,255,255,.8);
+  display: none;
+  margin: 10px 0;
+  animation: fadeIn 0.8s ease forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9) }
+  to   { opacity: 1; transform: scale(1) }
+}
+
+/* --- CINEMATIC FINAL PAGE --- */
+#finalPage {
+  width: 100%;
+  margin: 0;
+  padding: 20px;
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: bold;
+  text-align: center;
+  position: fixed;
+  z-index: 10;
+  border-radius: 0;
+  animation: pulseGlow 2s infinite, floatHearts 8s linear infinite;
+}
+@keyframes pulseGlow {
+  0%   { text-shadow: 0 0 20px white, 0 0 40px pink, 0 0 60px #ff8fab }
+  50%  { text-shadow: 0 0 40px white, 0 0 60px pink, 0 0 80px #ff4d6d }
+  100% { text-shadow: 0 0 20px white, 0 0 40px pink, 0 0 60px #ff8fab }
+}
+@keyframes floatHearts {
+  0%   { transform: translateY(0) scale(1) }
+  50%  { transform: translateY(-10px) scale(1.05) }
+  100% { transform: translateY(0) scale(1) }
+}
+
+/* --- CONFETTI --- */
+.confetti {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  top: -10px;
+  animation: fall linear forwards;
+  z-index: 10;
+  border-radius: 50%;
+}
+@keyframes fall {
+  to { transform: translateY(100vh) rotate(720deg); opacity: 0 }
+}
+
+/* --- REFRESH MESSAGE --- */
+#refreshMessage {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 1.2rem;
+  display: none;
+  z-index: 20;
+}
 </style>
 </head>
 <body>
 
-<h1>Hey kundi babe would you be my valentine? 💕</h1>
-<div class="buttons">
-<button id="yesBtn" type="button">Yes ☺️</button>
-<button id="hmmBtn" type="button">Hmm 🤔</button>
+<!-- MAIN CONTENT WRAPPER -->
+<div id="mainContent">
+  <h1 id="proposalText"></h1>
+
+  <div class="buttons">
+    <button id="yesBtn">Yes ☺️</button>
+    <button id="hmmBtn">Hmm 🤔</button>
+  </div>
+
+  <!-- BUNNY -->
+  <div id="bunny">
+    <div class="ear left"><div class="inner-ear"></div></div>
+    <div class="ear right"><div class="inner-ear"></div></div>
+    <div class="face">
+      <div class="eye left"></div>
+      <div class="eye right"></div>
+      <div class="blush left"></div>
+      <div class="blush right"></div>
+      <div class="nose"></div>
+      <div class="mouth" id="mouth"></div>
+    </div>
+  </div>
 </div>
 
-<div id="bunny">
-<div class="ear left"></div>
-<div class="ear right"></div>
-<div class="face">
-<div class="eye left"></div>
-<div class="eye right"></div>
-<div class="mouth" id="mouth"></div>
-</div>
-</div>
-
+<!-- MEMORIES PAGE (outside wrapper so fixed positioning works) -->
 <div id="memoriesPage" class="page">
-<img src="photo1.jpeg" class="memory-img">
-<img src="photo2.jpeg" class="memory-img">
-<img src="photo3.jpeg" class="memory-img">
+  <h2>Our Memories 💕</h2>
+  <img src="photo1.jpeg" alt="Memory 1">
+  <img src="photo2.jpeg" alt="Memory 2">
+  <img src="photo3.jpeg" alt="Memory 3">
 </div>
 
+<!-- FINAL CINEMATIC PAGE -->
 <div id="finalPage" class="page">
-Forever & Always ❤️
+  Mine Forever & Always ❤️
 </div>
 
-<div id="refreshMessage">You refreshed? You thought you could escape? Still mine. Always. ❤️</div>
+<div id="refreshMessage">You refreshed? Still mine. Always. ❤️</div>
 
-<audio id="loverSong" src="lover.mp3" loop></audio>
+<audio id="loverSong" src="lover.mp3"></audio>
 
 <script>
-let hmmCount=0;
-let scale=1;
-const yesBtn=document.getElementById('yesBtn');
-const hmmBtn=document.getElementById('hmmBtn');
-const mouth=document.getElementById('mouth');
-const bunny=document.getElementById('bunny');
-const memories=document.getElementById('memoriesPage');
-const finalPage=document.getElementById('finalPage');
-const song=document.getElementById('loverSong');
+/* --- INITIAL VARIABLES --- */
+let hmmCount = 0;
+let scale = 1;
+let growInterval = null;
 
-if(sessionStorage.getItem('visited')){
-document.getElementById('refreshMessage').style.display='block';
-}
-sessionStorage.setItem('visited',true);
+const yesBtn      = document.getElementById('yesBtn');
+const hmmBtn      = document.getElementById('hmmBtn');
+const mouth       = document.getElementById('mouth');
+const bunny       = document.getElementById('bunny');
+const memories    = document.getElementById('memoriesPage');
+const finalPage   = document.getElementById('finalPage');
+const song        = document.getElementById('loverSong');
+const proposal    = document.getElementById('proposalText');
+const mainContent = document.getElementById('mainContent');
 
-for(let i=0;i<40;i++){
-let s=document.createElement('div');
-s.className='sparkle';
-s.style.top=Math.random()*window.innerHeight+'px';
-s.style.left=Math.random()*window.innerWidth+'px';
-s.style.animationDelay=Math.random()*3+'s';
-document.body.appendChild(s);
+/* --- SESSION REFRESH MESSAGE --- */
+if (sessionStorage.getItem('visited')) {
+  document.getElementById('refreshMessage').style.display = 'block';
+}
+sessionStorage.setItem('visited', true);
+
+/* --- SPARKLES --- */
+for (let i = 0; i < 40; i++) {
+  const s = document.createElement('div');
+  s.className = 'sparkle';
+  s.style.top = Math.random() * window.innerHeight + 'px';
+  s.style.left = Math.random() * window.innerWidth + 'px';
+  s.style.animationDelay = Math.random() * 3 + 's';
+  document.body.appendChild(s);
 }
 
-hmmBtn.addEventListener('click',()=>{
-hmmCount++;
-if(hmmCount<=3){
-scale+=0.3;
-yesBtn.style.transform=`scale(${scale})`;
-mouth.style.borderBottom='none';
-mouth.style.borderTop=`3px solid ${hmmCount===1?'#666':hmmCount===2?'#999':'red'}`;
+/* --- FLOATING HEARTS WITH CLEANUP --- */
+function spawnHeart() {
+  const h = document.createElement('div');
+  h.className = 'heart';
+  h.innerHTML = '💖';
+  h.style.left = Math.random() * 100 + 'vw';
+  h.style.animationDuration = (4 + Math.random() * 4) + 's';
+  document.body.appendChild(h);
+  h.addEventListener('animationend', () => h.remove());
 }
-if(hmmCount===4){
-hmmBtn.style.position='absolute';
-hmmBtn.addEventListener('mouseover',()=>{
-hmmBtn.style.left=Math.random()*(window.innerWidth-100)+'px';
-hmmBtn.style.top=Math.random()*(window.innerHeight-50)+'px';
+for (let i = 0; i < 20; i++) {
+  setTimeout(() => spawnHeart(), Math.random() * 4000);
+}
+setInterval(spawnHeart, 2000);
+
+/* --- TYPEWRITER EFFECT --- */
+const text = "Hey kundi babe would you be my valentine? 💕";
+let index = 0;
+function typeWriter() {
+  if (index < text.length) {
+    proposal.innerHTML += text.charAt(index);
+    index++;
+    setTimeout(typeWriter, 50);
+  }
+}
+typeWriter();
+
+/* --- HMM BUTTON --- */
+hmmBtn.addEventListener('click', () => {
+  hmmCount++;
+  if (hmmCount <= 3) {
+    scale += 0.3;
+    yesBtn.style.transform = `scale(${scale})`;
+    mouth.style.borderBottom = 'none';
+    mouth.style.borderTop = `3px solid ${
+      hmmCount === 1 ? '#666' : hmmCount === 2 ? '#999' : 'red'
+    }`;
+  }
+  if (hmmCount === 2) hmmBtn.innerText = "Are you sure? 🥺";
+  if (hmmCount === 3) hmmBtn.innerText = "Don't break bunny's heart 💔";
+  if (hmmCount === 4) {
+    hmmBtn.style.position = 'absolute';
+    ['mouseover', 'touchstart'].forEach(evt => {
+      hmmBtn.addEventListener(evt, (e) => {
+        e.preventDefault();
+        hmmBtn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+        hmmBtn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+      });
+    });
+    growInterval = setInterval(() => {
+      scale += 0.5;
+      yesBtn.style.transform = `scale(${scale})`;
+      if (scale > 15) clearInterval(growInterval);
+    }, 200);
+  }
 });
-let grow=setInterval(()=>{
-scale+=0.6;
-yesBtn.style.transform=`scale(${scale})`;
-if(scale>20){clearInterval(grow)}
-},200);
-}
+
+/* --- YES BUTTON --- */
+yesBtn.addEventListener('click', () => {
+  if (growInterval) clearInterval(growInterval);
+
+  document.querySelector('.buttons').style.display = 'none';
+  bunny.classList.add('jump');
+  mouth.style.borderTop = 'none';
+  mouth.style.borderBottom = '3px solid green';
+
+  song.play().catch(() => console.log('Autoplay blocked'));
+
+  /* Confetti with cleanup */
+  for (let i = 0; i < 100; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.left = Math.random() * 100 + 'vw';
+    c.style.background = `hsl(${Math.random() * 360},100%,50%)`;
+    const dur = 2 + Math.random() * 2;
+    c.style.animationDuration = dur + 's';
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), dur * 1000);
+  }
+
+  /* Scale effect on wrapper only */
+  mainContent.style.transform = 'scale(1.05)';
+  setTimeout(() => { mainContent.style.transform = ''; }, 300);
+
+  /* Show memories page */
+  setTimeout(() => {
+    memories.style.display = 'flex';
+    memories.classList.add('fade');
+    showMemories();
+  }, 2000);
 });
 
-yesBtn.addEventListener('click',()=>{
-document.querySelector('.buttons').style.display='none';
-bunny.classList.add('jump');
-mouth.style.borderTop='none';
-mouth.style.borderBottom='3px solid green';
-song.play();
-
-for(let i=0;i<100;i++){
-let c=document.createElement('div');
-c.className='confetti';
-c.style.left=Math.random()*100+'vw';
-c.style.background=`hsl(${Math.random()*360},100%,50%)`;
-c.style.animationDuration=2+Math.random()*2+'s';
-document.body.appendChild(c);
-}
-
-setTimeout(()=>{
-startMemories();
-},2000);
-});
-
-function startMemories(){
-memories.style.display='flex';
-memories.classList.add('fade');
-let imgs=document.querySelectorAll('.memory-img');
-let index=0;
-
-function showNext(){
-if(index>0) imgs[index-1].style.display='none';
-if(index<imgs.length){
-imgs[index].style.display='block';
-index++;
-setTimeout(showNext,3000);
-}else{
-memories.style.display='none';
-showFinal();
-}
-}
-showNext();
-}
-
-function showFinal(){
-finalPage.style.display='flex';
-finalPage.classList.add('fade');
-startHearts();
-}
-
-function startHearts(){
-for(let i=0;i<25;i++){
-let heart=document.createElement('div');
-heart.className='heart';
-heart.innerHTML='❤️';
-heart.style.left=Math.random()*100+'vw';
-heart.style.animationDuration=4+Math.random()*4+'s';
-finalPage.appendChild(heart);
-}
+/* --- MEMORIES SLIDESHOW --- */
+function showMemories() {
+  const imgs = memories.querySelectorAll('img');
+  imgs.forEach(img => {
+    img.onerror = () => { img.style.display = 'none'; };
+  });
+  let i = 0;
+  function showNext() {
+    if (i > 0) imgs[i - 1].style.display = 'none';
+    if (i < imgs.length) {
+      imgs[i].style.display = 'block';
+      i++;
+      setTimeout(showNext, 3000);
+    } else {
+      setTimeout(() => {
+        memories.style.display = 'none';
+        finalPage.style.display = 'flex';
+      }, 2000);
+    }
+  }
+  showNext();
 }
 </script>
-
 </body>
 </html>
